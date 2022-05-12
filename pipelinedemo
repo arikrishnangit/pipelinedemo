@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    tools {
+        terraform 'terraform'    '
+    }
+    stages{
+        stage('Git Checkout'){
+            step{
+                git credentialsId: 'arikrishnan', url: 'https://github.com/arikrishnangit/jenkins1'
+            }
+        }  
+        stage('Terraform Init'){
+            steps{
+                sh 'terraform init'
+            }
+        }stage('Terraform Apply'){
+            steps{
+                sh: 'terraform apply --auto-approve'
+    }
+}
